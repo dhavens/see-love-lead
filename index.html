@@ -487,187 +487,6 @@
             font-size: 0.95rem;
         }
 
-        .cycle-diagram {
-            max-width: 600px;
-            margin: 2rem auto;
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .cycle-element {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: 600;
-            font-size: 1.3rem;
-            position: relative;
-            margin: 0 2rem;
-        }
-
-        .cycle-see {
-            background-color: var(--see-color);
-        }
-
-        .cycle-love {
-            background-color: var(--love-color);
-        }
-
-        .cycle-lead {
-            background-color: var(--lead-color);
-        }
-
-        .cycle-arrow {
-            position: absolute;
-            font-size: 2rem;
-            color: #888;
-        }
-
-        .see-to-love {
-            top: 50%;
-            left: 100%;
-            transform: translateY(-50%);
-        }
-
-        .love-to-lead {
-            top: 100%;
-            left: 50%;
-            transform: rotate(45deg);
-        }
-
-        .lead-to-see {
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%) rotate(180deg);
-        }
-
-        .cycle-description {
-            text-align: center;
-            margin: 2rem 0;
-            font-style: italic;
-            color: var(--secondary-text);
-        }
-
-        .conflicts-container {
-            margin: 2rem 0;
-        }
-
-        .conflict-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .conflict-card h3 {
-            margin-bottom: 0.75rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.5rem;
-        }
-
-        .conflict-phases {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .conflict-phases {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .conflict-phase {
-            background-color: #f9f9f9;
-            padding: 1rem;
-            border-radius: 6px;
-        }
-
-        .conflict-phase h4 {
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        .conflict-phase ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .conflict-phase ul li {
-            padding: 0.25rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .conflict-phase ul li::before {
-            content: '•';
-            position: absolute;
-            left: 0.5rem;
-            color: #888;
-        }
-
-        .contemporary-challenges {
-            margin: 2rem 0;
-        }
-
-        .challenge-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .challenge-card h3 {
-            margin-bottom: 0.75rem;
-        }
-
-        .challenge-principles {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .challenge-principles {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .challenge-principle {
-            padding: 1rem;
-            border-radius: 6px;
-        }
-
-        .challenge-see {
-            background-color: var(--see-light);
-        }
-
-        .challenge-love {
-            background-color: var(--love-light);
-        }
-
-        .challenge-lead {
-            background-color: var(--lead-light);
-        }
-
-        .challenge-principle h4 {
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        .challenge-principle p {
-            font-size: 0.9rem;
-            color: var(--secondary-text);
-        }
-
         .section-summary {
             text-align: center;
             max-width: 800px;
@@ -675,6 +494,16 @@
             font-size: 1.1rem;
             color: var(--secondary-text);
             padding: 0 1rem;
+        }
+        
+        .quote-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
         }
     </style>
 </head>
@@ -703,7 +532,7 @@
                     
                     <div class="tab-content active" id="overview">
                         <div class="grid-container">
-                            <div class="card card-see" data-principle="see">
+                            <div class="card card-see" onclick="openPrincipleModal('see')">
                                 <div class="card-content">
                                     <h3 class="card-title">SEE</h3>
                                     <p class="card-subtitle">Perceive with Honesty</p>
@@ -716,7 +545,7 @@
                                 </div>
                             </div>
                             
-                            <div class="card card-love" data-principle="love">
+                            <div class="card card-love" onclick="openPrincipleModal('love')">
                                 <div class="card-content">
                                     <h3 class="card-title">LOVE</h3>
                                     <p class="card-subtitle">Connect with Delight</p>
@@ -729,7 +558,7 @@
                                 </div>
                             </div>
                             
-                            <div class="card card-lead" data-principle="lead">
+                            <div class="card card-lead" onclick="openPrincipleModal('lead')">
                                 <div class="card-content">
                                     <h3 class="card-title">LEAD</h3>
                                     <p class="card-subtitle">Act with Purpose</p>
@@ -818,21 +647,21 @@
                             <tbody>
                                 <tr class="see-row">
                                     <th>SEE</th>
-                                    <td class="cell-see">Know Yourself</td>
-                                    <td class="cell-see">Understand Others</td>
-                                    <td class="cell-see">Notice More</td>
+                                    <td class="cell-see" onclick="openRelationshipModal('see', 'self')">Know Yourself</td>
+                                    <td class="cell-see" onclick="openRelationshipModal('see', 'others')">Understand Others</td>
+                                    <td class="cell-see" onclick="openRelationshipModal('see', 'world')">Notice More</td>
                                 </tr>
                                 <tr class="love-row">
                                     <th>LOVE</th>
-                                    <td class="cell-love">Accept Yourself</td>
-                                    <td class="cell-love">Value Others</td>
-                                    <td class="cell-love">Embrace Reality</td>
+                                    <td class="cell-love" onclick="openRelationshipModal('love', 'self')">Accept Yourself</td>
+                                    <td class="cell-love" onclick="openRelationshipModal('love', 'others')">Value Others</td>
+                                    <td class="cell-love" onclick="openRelationshipModal('love', 'world')">Embrace Reality</td>
                                 </tr>
                                 <tr class="lead-row">
                                     <th>LEAD</th>
-                                    <td class="cell-lead">Live Authentically</td>
-                                    <td class="cell-lead">Connect Genuinely</td>
-                                    <td class="cell-lead">Contribute Meaningfully</td>
+                                    <td class="cell-lead" onclick="openRelationshipModal('lead', 'self')">Live Authentically</td>
+                                    <td class="cell-lead" onclick="openRelationshipModal('lead', 'others')">Connect Genuinely</td>
+                                    <td class="cell-lead" onclick="openRelationshipModal('lead', 'world')">Contribute Meaningfully</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -899,17 +728,17 @@
                 </p>
                 
                 <div class="values-grid">
-                    <div class="value-card" data-value="attention">
+                    <div class="value-card" onclick="openValueModal('attention')">
                         <h3>Attention</h3>
                         <p>Stay fully present to what is, without filters or distortions. Notice without judgment.</p>
                     </div>
                     
-                    <div class="value-card" data-value="inquiry">
+                    <div class="value-card" onclick="openValueModal('inquiry')">
                         <h3>Inquiry</h3>
                         <p>Investigate with genuine curiosity; ask deeper questions and seek continuous education.</p>
                     </div>
                     
-                    <div class="value-card" data-value="awe">
+                    <div class="value-card" onclick="openValueModal('awe')">
                         <h3>Awe</h3>
                         <p>Notice the connections, patterns, and meaning beyond the surface; remain open to beauty and mystery.</p>
                     </div>
@@ -920,3 +749,70 @@
         <section class="love-bg">
             <div class="container section">
                 <h2 class="section-title">LOVE: Connect with Delight</h2>
+                <p class="section-summary">
+                    Embrace life with humility, kindness, and acceptance. The practice of loving involves recognizing your equality with others, responding with care, and saying "yes" to reality through gratitude and joy.
+                </p>
+                
+                <div class="values-grid">
+                    <div class="value-card" onclick="openValueModal('humility')">
+                        <h3>Humility</h3>
+                        <p>Recognize yourself as equal to, but no better than, others; acknowledge both your strengths and limitations with honesty.</p>
+                    </div>
+                    
+                    <div class="value-card" onclick="openValueModal('kindness')">
+                        <h3>Kindness</h3>
+                        <p>Respond with genuine care to both beauty and brokenness; serve with intention and generosity of spirit.</p>
+                    </div>
+                    
+                    <div class="value-card" onclick="openValueModal('acceptance')">
+                        <h3>Acceptance</h3>
+                        <p>Accept reality and its offers. Savor the magic of everyday moments through affirmation, gratitude, and joy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lead-bg">
+            <div class="container section">
+                <h2 class="section-title">LEAD: Act with Purpose</h2>
+                <p class="section-summary">
+                    Move forward with intention, creativity, and perseverance. The practice of leading involves aligning your actions with your values, embracing growth through experimentation, and developing resilience in the face of challenges.
+                </p>
+                
+                <div class="values-grid">
+                    <div class="value-card" onclick="openValueModal('direction')">
+                        <h3>Direction</h3>
+                        <p>Move forward guided by values, vision, and ethical wisdom; act with integrity even when it's difficult.</p>
+                    </div>
+                    
+                    <div class="value-card" onclick="openValueModal('evolution')">
+                        <h3>Evolution</h3>
+                        <p>Adapt and grow through emergent possibilities; embrace experimentation, play, and creative discovery as paths to growth.</p>
+                    </div>
+                    
+                    <div class="value-card" onclick="openValueModal('resilience')">
+                        <h3>Resilience</h3>
+                        <p>Remain steadfast in commitment despite obstacles; balance persistence with flexibility; take action rather than waiting for rescue.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Contemporary Challenges</h2>
+                <p class="section-summary">
+                    Applying the See, Love, Lead framework to navigate modern challenges with wisdom and grace.
+                </p>
+                
+                <div class="challenge-card">
+                    <h3>Digital Overwhelm</h3>
+                    <div class="challenge-principles">
+                        <div class="challenge-principle challenge-see">
+                            <h4>SEE</h4>
+                            <p>Practice digital mindfulness; notice how technology affects your attention and energy.</p>
+                        </div>
+                        <div class="challenge-principle challenge-love">
+                            <h4>LOVE</h4>
+                            <p>Accept both the benefits and limitations of digital connection without idealizing or demonizing.</p>
+                        </div>
