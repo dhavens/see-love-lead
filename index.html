@@ -4,508 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>See, Love, Lead Framework</title>
-    <style>
-        :root {
-            --see-color: #3498db;
-            --love-color: #e74c3c;
-            --lead-color: #2ecc71;
-            --see-light: #d6eaf8;
-            --love-light: #fadbd8;
-            --lead-light: #d5f5e3;
-            --body-bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --secondary-text: #666666;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--body-bg);
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--see-color), var(--love-color), var(--lead-color));
-            color: white;
-            text-align: center;
-            padding: 3rem 1rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .header-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .section {
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--see-color), var(--love-color), var(--lead-color));
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tab-container {
-            margin: 2rem 0;
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 0.75rem 1.5rem;
-            margin: 0 0.25rem 0.5rem;
-            border: none;
-            background-color: #f1f1f1;
-            cursor: pointer;
-            font-weight: 600;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn:hover {
-            background-color: #e0e0e0;
-        }
-
-        .tab-btn.active.see {
-            background-color: var(--see-color);
-            color: white;
-        }
-
-        .tab-btn.active.love {
-            background-color: var(--love-color);
-            color: white;
-        }
-
-        .tab-btn.active.lead {
-            background-color: var(--lead-color);
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-see {
-            border-top: 4px solid var(--see-color);
-        }
-
-        .card-love {
-            border-top: 4px solid var(--love-color);
-        }
-
-        .card-lead {
-            border-top: 4px solid var(--lead-color);
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-color);
-        }
-
-        .card-subtitle {
-            font-size: 1rem;
-            color: var(--secondary-text);
-            margin-bottom: 1rem;
-        }
-
-        .card-description {
-            font-size: 0.95rem;
-            color: var(--text-color);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 30px;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .badge-see {
-            background-color: var(--see-light);
-            color: var(--see-color);
-        }
-
-        .badge-love {
-            background-color: var(--love-light);
-            color: var(--love-color);
-        }
-
-        .badge-lead {
-            background-color: var(--lead-light);
-            color: var(--lead-color);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            margin: 10vh auto;
-            padding: 2rem;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 1rem;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            color: var(--text-color);
-        }
-
-        .close-modal {
-            font-size: 1.8rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: #666;
-        }
-
-        .modal-body {
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-section {
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-section-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-color);
-        }
-
-        .quote-section {
-            margin-top: 2rem;
-        }
-
-        .quote-category {
-            font-weight: 600;
-            color: var(--secondary-text);
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .quote {
-            background-color: #f9f9f9;
-            padding: 1rem;
-            border-radius: 6px;
-            margin-bottom: 0.75rem;
-            border-left: 3px solid #ddd;
-        }
-
-        .quote-see {
-            border-left-color: var(--see-color);
-        }
-
-        .quote-love {
-            border-left-color: var(--love-color);
-        }
-
-        .quote-lead {
-            border-left-color: var(--lead-color);
-        }
-
-        .relationship-tabs {
-            display: flex;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .relationship-tab {
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            margin-right: 1rem;
-        }
-
-        .relationship-tab.active {
-            border-bottom-color: #333;
-            font-weight: 600;
-        }
-
-        .relationship-content {
-            display: none;
-        }
-
-        .relationship-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .framework-matrix {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .framework-matrix th, 
-        .framework-matrix td {
-            padding: 1rem;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        .framework-matrix th {
-            background-color: #f5f5f5;
-            font-weight: 600;
-        }
-
-        .framework-matrix th:first-child {
-            width: 80px;
-        }
-
-        .framework-matrix .see-row {
-            background-color: var(--see-light);
-        }
-
-        .framework-matrix .love-row {
-            background-color: var(--love-light);
-        }
-
-        .framework-matrix .lead-row {
-            background-color: var(--lead-light);
-        }
-
-        .framework-matrix .cell-see {
-            color: var(--see-color);
-            font-weight: 600;
-        }
-
-        .framework-matrix .cell-love {
-            color: var(--love-color);
-            font-weight: 600;
-        }
-
-        .framework-matrix .cell-lead {
-            color: var(--lead-color);
-            font-weight: 600;
-        }
-
-        .see-bg {
-            background-color: var(--see-light);
-            padding: 3rem 0;
-        }
-
-        .love-bg {
-            background-color: var(--love-light);
-            padding: 3rem 0;
-        }
-        
-        .lead-bg {
-            background-color: var(--lead-light);
-            padding: 3rem 0;
-        }
-
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        @media (max-width: 768px) {
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .value-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .value-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .value-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .value-card p {
-            color: var(--secondary-text);
-            font-size: 0.9rem;
-        }
-
-        .application-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        @media (max-width: 768px) {
-            .application-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .application-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-        }
-
-        .application-card h3 {
-            margin-bottom: 0.75rem;
-        }
-
-        .application-card p {
-            color: var(--secondary-text);
-            font-size: 0.95rem;
-        }
-
-        .section-summary {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            font-size: 1.1rem;
-            color: var(--secondary-text);
-            padding: 0 1rem;
-        }
-        
-        .quote-list {
-            max-height: 300px;
-            overflow-y: auto;
-            padding-right: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -532,7 +31,7 @@
                     
                     <div class="tab-content active" id="overview">
                         <div class="grid-container">
-                            <div class="card card-see" onclick="openPrincipleModal('see')">
+                            <div class="card card-see" onclick="location.href='see.html'">
                                 <div class="card-content">
                                     <h3 class="card-title">SEE</h3>
                                     <p class="card-subtitle">Perceive with Honesty</p>
@@ -545,7 +44,7 @@
                                 </div>
                             </div>
                             
-                            <div class="card card-love" onclick="openPrincipleModal('love')">
+                            <div class="card card-love" onclick="location.href='love.html'">
                                 <div class="card-content">
                                     <h3 class="card-title">LOVE</h3>
                                     <p class="card-subtitle">Connect with Delight</p>
@@ -558,7 +57,7 @@
                                 </div>
                             </div>
                             
-                            <div class="card card-lead" onclick="openPrincipleModal('lead')">
+                            <div class="card card-lead" onclick="location.href='lead.html'">
                                 <div class="card-content">
                                     <h3 class="card-title">LEAD</h3>
                                     <p class="card-subtitle">Act with Purpose</p>
@@ -574,25 +73,12 @@
                     </div>
                     
                     <div class="tab-content" id="cycle">
-                        <div class="cycle-diagram">
-                            <div class="cycle-element cycle-see">SEE</div>
-                            <div class="cycle-element cycle-love">LOVE</div>
-                            <div class="cycle-element cycle-lead">LEAD</div>
-                        </div>
-                        
-                        <div class="cycle-description">
-                            <p>The See, Love, Lead framework is cyclical, with each component reinforcing and deepening the others.</p>
-                        </div>
-                        
                         <div class="grid-container">
                             <div class="card">
                                 <div class="card-content">
                                     <h3 class="card-title">SEE → LOVE</h3>
                                     <p class="card-subtitle">Clarity Enables Acceptance</p>
                                     <p class="card-description">When we truly see reality without distortion, we can genuinely accept it. Clear perception allows us to love what is, rather than clinging to illusions.</p>
-                                    <p class="card-description" style="margin-top: 1rem;">
-                                        <strong>Example:</strong> Recognizing a personal limitation (SEE) allows us to accept it with self-compassion (LOVE) rather than denial or shame.
-                                    </p>
                                 </div>
                             </div>
                             
@@ -601,9 +87,6 @@
                                     <h3 class="card-title">LOVE → LEAD</h3>
                                     <p class="card-subtitle">Acceptance Empowers Action</p>
                                     <p class="card-description">When we fully accept reality with appreciation, we can respond appropriately rather than reactively. Love provides the stable foundation for purposeful action.</p>
-                                    <p class="card-description" style="margin-top: 1rem;">
-                                        <strong>Example:</strong> Accepting a challenging situation (LOVE) enables us to make difficult decisions with courage rather than avoidance (LEAD).
-                                    </p>
                                 </div>
                             </div>
                             
@@ -612,21 +95,7 @@
                                     <h3 class="card-title">LEAD → SEE</h3>
                                     <p class="card-subtitle">Action Clarifies Perception</p>
                                     <p class="card-description">Taking purposeful action reveals new insights and perspectives. Leading helps us see more clearly as we engage with reality.</p>
-                                    <p class="card-description" style="margin-top: 1rem;">
-                                        <strong>Example:</strong> Starting a new project (LEAD) helps us discover strengths and weaknesses we hadn't previously recognized (SEE).
-                                    </p>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card" style="margin-top: 2rem;">
-                            <div class="card-content">
-                                <h3 class="card-title">Full Integration</h3>
-                                <p class="card-subtitle">Wisdom in Practice</p>
-                                <p class="card-description">True wisdom emerges when all three elements operate simultaneously: seeing clearly while accepting fully while acting purposefully.</p>
-                                <p class="card-description" style="margin-top: 1rem;">
-                                    <strong>Example:</strong> During a difficult conversation, we can simultaneously notice our emotions (SEE), accept them without judgment (LOVE), and respond thoughtfully (LEAD).
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -647,74 +116,24 @@
                             <tbody>
                                 <tr class="see-row">
                                     <th>SEE</th>
-                                    <td class="cell-see" onclick="openRelationshipModal('see', 'self')">Know Yourself</td>
-                                    <td class="cell-see" onclick="openRelationshipModal('see', 'others')">Understand Others</td>
-                                    <td class="cell-see" onclick="openRelationshipModal('see', 'world')">Notice More</td>
+                                    <td class="cell-see clickable" onclick="location.href='see.html#self'">Know Yourself</td>
+                                    <td class="cell-see clickable" onclick="location.href='see.html#others'">Understand Others</td>
+                                    <td class="cell-see clickable" onclick="location.href='see.html#world'">Notice More</td>
                                 </tr>
                                 <tr class="love-row">
                                     <th>LOVE</th>
-                                    <td class="cell-love" onclick="openRelationshipModal('love', 'self')">Accept Yourself</td>
-                                    <td class="cell-love" onclick="openRelationshipModal('love', 'others')">Value Others</td>
-                                    <td class="cell-love" onclick="openRelationshipModal('love', 'world')">Embrace Reality</td>
+                                    <td class="cell-love clickable" onclick="location.href='love.html#self'">Accept Yourself</td>
+                                    <td class="cell-love clickable" onclick="location.href='love.html#others'">Value Others</td>
+                                    <td class="cell-love clickable" onclick="location.href='love.html#world'">Embrace Reality</td>
                                 </tr>
                                 <tr class="lead-row">
                                     <th>LEAD</th>
-                                    <td class="cell-lead" onclick="openRelationshipModal('lead', 'self')">Live Authentically</td>
-                                    <td class="cell-lead" onclick="openRelationshipModal('lead', 'others')">Connect Genuinely</td>
-                                    <td class="cell-lead" onclick="openRelationshipModal('lead', 'world')">Contribute Meaningfully</td>
+                                    <td class="cell-lead clickable" onclick="location.href='lead.html#self'">Live Authentically</td>
+                                    <td class="cell-lead clickable" onclick="location.href='lead.html#others'">Connect Genuinely</td>
+                                    <td class="cell-lead clickable" onclick="location.href='lead.html#world'">Contribute Meaningfully</td>
                                 </tr>
                             </tbody>
                         </table>
-                        
-                        <h3 style="margin: 2rem 0 1rem; text-align: center;">The Values in Practice</h3>
-                        <p style="text-align: center; margin-bottom: 2rem;">The framework yields nine key practices when applied across our three fundamental relationships.</p>
-                        
-                        <div class="application-grid">
-                            <div class="application-card">
-                                <h3>1. Know Yourself</h3>
-                                <p>Cultivate honest self-awareness; observe your thoughts, feelings, and patterns without judgment.</p>
-                            </div>
-                            
-                            <div class="application-card">
-                                <h3>2. Understand Others</h3>
-                                <p>Witness others as they truly are; look beyond assumptions and projections.</p>
-                            </div>
-                            
-                            <div class="application-card">
-                                <h3>3. Notice More</h3>
-                                <p>Observe the world attentively; pay attention to details, patterns, and deeper meanings.</p>
-                            </div>
-                            
-                            <div class="application-card">
-                                <h3>4. Accept Yourself</h3>
-                                <p>Welcome your whole being with kindness; recognize your inherent worth.</p>
-                            </div>
-                            
-                            <div class="application-card">
-                                <h3>5. Value Others</h3>
-                                <p>Acknowledge others as your equals; respond with compassion and respect.</p>
-                            </div>
-                            
-                            <div class="application-card">
-                                <h3>6. Embrace Reality</h3>
-                                <p>Recognize the invitations in every moment; respond with gratitude.</p>
-                            </div>
-                            
-                            <div class="application-card">
-                                <h3>7. Live Authentically</h3>
-                                <p>Align your actions with your deepest values; grow intentionally.</p>
-                            </div>
-                            
-                            <div class="application-card">
-                                <h3>8. Connect Genuinely</h3>
-                                <p>Build relationships based on truth, mutual understanding, and shared joy.</p>
-                            </div>
-                            
-                            <div class="application-card">
-                                <h3>9. Contribute Meaningfully</h3>
-                                <p>Offer your unique gifts to create positive change; participate in communities that amplify collective impact.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -723,22 +142,19 @@
         <section class="see-bg">
             <div class="container section">
                 <h2 class="section-title">SEE: Perceive with Honesty</h2>
-                <p class="section-summary">
-                    Observe life with awareness, curiosity, and wonder. The practice of seeing involves attending to reality as it is, inquiring deeply into its nature, and maintaining a sense of awe about its mysteries.
-                </p>
                 
                 <div class="values-grid">
-                    <div class="value-card" onclick="openValueModal('attention')">
+                    <div class="value-card" onclick="location.href='see.html#attention'">
                         <h3>Attention</h3>
                         <p>Stay fully present to what is, without filters or distortions. Notice without judgment.</p>
                     </div>
                     
-                    <div class="value-card" onclick="openValueModal('inquiry')">
+                    <div class="value-card" onclick="location.href='see.html#inquiry'">
                         <h3>Inquiry</h3>
                         <p>Investigate with genuine curiosity; ask deeper questions and seek continuous education.</p>
                     </div>
                     
-                    <div class="value-card" onclick="openValueModal('awe')">
+                    <div class="value-card" onclick="location.href='see.html#awe'">
                         <h3>Awe</h3>
                         <p>Notice the connections, patterns, and meaning beyond the surface; remain open to beauty and mystery.</p>
                     </div>
@@ -749,24 +165,21 @@
         <section class="love-bg">
             <div class="container section">
                 <h2 class="section-title">LOVE: Connect with Delight</h2>
-                <p class="section-summary">
-                    Embrace life with humility, kindness, and acceptance. The practice of loving involves recognizing your equality with others, responding with care, and saying "yes" to reality through gratitude and joy.
-                </p>
                 
                 <div class="values-grid">
-                    <div class="value-card" onclick="openValueModal('humility')">
+                    <div class="value-card" onclick="location.href='love.html#humility'">
                         <h3>Humility</h3>
-                        <p>Recognize yourself as equal to, but no better than, others; acknowledge both your strengths and limitations with honesty.</p>
+                        <p>Recognize yourself as equal to, but no better than, others; acknowledge both strengths and limitations.</p>
                     </div>
                     
-                    <div class="value-card" onclick="openValueModal('kindness')">
+                    <div class="value-card" onclick="location.href='love.html#kindness'">
                         <h3>Kindness</h3>
-                        <p>Respond with genuine care to both beauty and brokenness; serve with intention and generosity of spirit.</p>
+                        <p>Respond with genuine care to both beauty and brokenness; serve with intention and generosity.</p>
                     </div>
                     
-                    <div class="value-card" onclick="openValueModal('acceptance')">
+                    <div class="value-card" onclick="location.href='love.html#acceptance'">
                         <h3>Acceptance</h3>
-                        <p>Accept reality and its offers. Savor the magic of everyday moments through affirmation, gratitude, and joy.</p>
+                        <p>Accept reality and its offers. Savor the magic of everyday moments through gratitude and joy.</p>
                     </div>
                 </div>
             </div>
@@ -775,24 +188,21 @@
         <section class="lead-bg">
             <div class="container section">
                 <h2 class="section-title">LEAD: Act with Purpose</h2>
-                <p class="section-summary">
-                    Move forward with intention, creativity, and perseverance. The practice of leading involves aligning your actions with your values, embracing growth through experimentation, and developing resilience in the face of challenges.
-                </p>
                 
                 <div class="values-grid">
-                    <div class="value-card" onclick="openValueModal('direction')">
+                    <div class="value-card" onclick="location.href='lead.html#direction'">
                         <h3>Direction</h3>
-                        <p>Move forward guided by values, vision, and ethical wisdom; act with integrity even when it's difficult.</p>
+                        <p>Move forward guided by values, vision, and ethical wisdom; act with integrity even when difficult.</p>
                     </div>
                     
-                    <div class="value-card" onclick="openValueModal('evolution')">
+                    <div class="value-card" onclick="location.href='lead.html#evolution'">
                         <h3>Evolution</h3>
-                        <p>Adapt and grow through emergent possibilities; embrace experimentation, play, and creative discovery as paths to growth.</p>
+                        <p>Adapt and grow through emergent possibilities; embrace experimentation and creative discovery.</p>
                     </div>
                     
-                    <div class="value-card" onclick="openValueModal('resilience')">
+                    <div class="value-card" onclick="location.href='lead.html#resilience'">
                         <h3>Resilience</h3>
-                        <p>Remain steadfast in commitment despite obstacles; balance persistence with flexibility; take action rather than waiting for rescue.</p>
+                        <p>Remain steadfast in commitment despite obstacles; balance persistence with flexibility.</p>
                     </div>
                 </div>
             </div>
@@ -800,19 +210,55 @@
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title">Contemporary Challenges</h2>
-                <p class="section-summary">
-                    Applying the See, Love, Lead framework to navigate modern challenges with wisdom and grace.
-                </p>
+                <h2 class="section-title">The Framework in Practice</h2>
                 
-                <div class="challenge-card">
-                    <h3>Digital Overwhelm</h3>
-                    <div class="challenge-principles">
-                        <div class="challenge-principle challenge-see">
-                            <h4>SEE</h4>
-                            <p>Practice digital mindfulness; notice how technology affects your attention and energy.</p>
-                        </div>
-                        <div class="challenge-principle challenge-love">
-                            <h4>LOVE</h4>
-                            <p>Accept both the benefits and limitations of digital connection without idealizing or demonizing.</p>
-                        </div>
+                <div class="practice-grid">
+                    <div class="practice-card practice-card-see" onclick="location.href='practices.html#know_yourself'">
+                        <h3>1. Know Yourself</h3>
+                    </div>
+                    
+                    <div class="practice-card practice-card-see" onclick="location.href='practices.html#understand_others'">
+                        <h3>2. Understand Others</h3>
+                    </div>
+                    
+                    <div class="practice-card practice-card-see" onclick="location.href='practices.html#notice_more'">
+                        <h3>3. Notice More</h3>
+                    </div>
+                    
+                    <div class="practice-card practice-card-love" onclick="location.href='practices.html#accept_yourself'">
+                        <h3>4. Accept Yourself</h3>
+                    </div>
+                    
+                    <div class="practice-card practice-card-love" onclick="location.href='practices.html#value_others'">
+                        <h3>5. Value Others</h3>
+                    </div>
+                    
+                    <div class="practice-card practice-card-love" onclick="location.href='practices.html#embrace_reality'">
+                        <h3>6. Embrace Reality</h3>
+                    </div>
+                    
+                    <div class="practice-card practice-card-lead" onclick="location.href='practices.html#live_authentically'">
+                        <h3>7. Live Authentically</h3>
+                    </div>
+                    
+                    <div class="practice-card practice-card-lead" onclick="location.href='practices.html#connect_genuinely'">
+                        <h3>8. Connect Genuinely</h3>
+                    </div>
+                    
+                    <div class="practice-card practice-card-lead" onclick="location.href='practices.html#contribute_meaningfully'">
+                        <h3>9. Contribute Meaningfully</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>The See, Love, Lead Framework &copy; 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
