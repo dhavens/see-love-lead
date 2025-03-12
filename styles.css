@@ -496,3 +496,90 @@ footer {
 .expanded:hover {
     transform: none;
 }
+
+/* Add these styles to your styles.css file */
+
+.values-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.values-table th,
+.values-table td {
+    padding: 1.25rem;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.values-table th {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.values-table td {
+    text-align: left;
+}
+
+.values-table h4 {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.values-table p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--secondary-text);
+}
+
+.values-table a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.values-table a:hover {
+    text-decoration: underline;
+}
+
+.see-header {
+    background-color: var(--see-color);
+    color: white;
+}
+
+.love-header {
+    background-color: var(--love-color);
+    color: white;
+}
+
+.lead-header {
+    background-color: var(--lead-color);
+    color: white;
+}
+
+.see-cell {
+    background-color: var(--see-light);
+}
+
+.see-cell h4 a {
+    color: var(--see-color);
+}
+
+.love-cell {
+    background-color: var(--love-light);
+}
+
+.love-cell h4 a {
+    color: var(--love-color);
+}
+
+.lead-cell {
+    background-color: var(--lead-light);
+}
+
+.lead-cell h4 a {
+    color: var(--lead-color);
+}
